@@ -13,11 +13,12 @@ jobs:
         - name: Checkout Repository
           uses: actions/checkout@v2
         - name: Get PR Files
-          id: pr-files
-          run: echo "::set-output name=files::$(jq -r '.pull_request.files[]?.filename' $GITHUB_EVENT_PATH | grep '\.md$' || true)"
-        
+          uses: tj-actions/changed-files@v42.0.2
+          with: 
+            files: |
+              **.md
         - name: Create Comment on Pull request
-          if: steps.pr-changes.outputs.md_files != ''
+          if: steps.changed-markdown-files.outputs.any_changed == 'true'
           uses: mshick/add-pr-comment@v2.8.2
           with:
             message: "This is a test comment to check workflow for docs changes"
