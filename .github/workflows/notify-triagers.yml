@@ -3,7 +3,7 @@ name: Notify Triagers on .Md files change
 on:
     pull_request:
       branches:
-        - triage-bug-fix
+        - 'triage-bug-fix'
       paths:
         - 'pages/*'  
 
