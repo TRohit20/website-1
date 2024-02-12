@@ -12,12 +12,14 @@ jobs:
     steps:
         - name: Check PR Changes
           id: pr-changes
-          run: echo "::set-output name=changes::${{ toJson(github.event.pull_request.changed_files) }}"
+          run: |
+            changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+            md_files=$(echo "$changed_files" | grep '\.md$' || true)
+            echo "::set-output name=md_files::${md_files}"
         
-        - name: Create Comment
-          if: steps.pr-changes.outputs.changes != '[]'
+        - name: Create Comment on Pull request
+          if: steps.pr-changes.outputs.md_files != ''
           uses: mshick/add-pr-comment@v2.8.2
           with:
-            message: "This is a test comment to check workflow"
+            message: "This is a test comment to check workflow for docs changes"
             repo-token: ${{secrets.GH_TOKEN}}
-            
