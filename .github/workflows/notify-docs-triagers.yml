@@ -12,12 +12,9 @@ jobs:
     steps:
         - name: Checkout Repository
           uses: actions/checkout@v2
-        - name: Check PR Changes
-          id: pr-changes
-          run: |
-            changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-            md_files=$(echo "$changed_files" | grep '\.md$' || true)
-            echo "::set-output name=md_files::${md_files}"
+        - name: Get PR Files
+          id: pr-files
+          run: echo "::set-output name=files::$(jq -r '.pull_request.files[]?.filename' $GITHUB_EVENT_PATH | grep '\.md$' || true)"
         
         - name: Create Comment on Pull request
           if: steps.pr-changes.outputs.md_files != ''
