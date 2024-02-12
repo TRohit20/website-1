@@ -2,7 +2,6 @@ name: Notify Docs-triagers
 
 on:
   pull_request:
-  push:
     branches:
       - master
 
@@ -11,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Checkout Repository
-          uses: actions/checkout@v2
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 2
         - name: Get all changed files
           id: changed-files
           uses: tj-actions/changed-files@v42.0.2
@@ -19,7 +20,7 @@ jobs:
             files: |
               **.md
         - name: Create Comment on Pull request
-          if: steps.changed-files.outputs.any_changed == 'true'
+          if: steps.changed-files.outputs.files_changed != ''
           uses: mshick/add-pr-comment@v2.8.2
           with:
             message: "This is a test comment to check workflow for docs changes"
