@@ -18,7 +18,7 @@ jobs:
           uses: tj-actions/changed-files@v42.0.2
           with: 
             files: |
-              **.md
+              *.md
         - name: Create Comment on Pull request
           if: steps.changed-files.outputs.files_changed != ''
           uses: mshick/add-pr-comment@v2.8.2
