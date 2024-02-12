@@ -16,8 +16,8 @@ jobs:
         
         - name: Create Comment
           if: steps.pr-changes.outputs.changes != '[]'
-          uses: thollander/actions-comment-pull-request@v2.4.3
+          uses: mshick/add-pr-comment@v2.8.2
           with:
             message: "This is a test comment to check workflow"
-            GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+            repo-token: ${{secrets.GH_TOKEN}}
             
