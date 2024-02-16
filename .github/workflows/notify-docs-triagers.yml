@@ -15,12 +15,13 @@ jobs:
 
       - name: Check PR Changes
         id: pr-changes
-        run: |
-          md_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- '*.md' || true)
-          echo "::set-output name=md_changes::${md_files}"
+        uses: tj-actions/changed-files@v42
+        with:
+          files: |
+            **.md
 
       - name: Create Comment
-        if: steps.pr-changes.outputs.md_changes != ''
+        if: steps.pr-changes.outputs.any_changed == 'true'
         uses: mshick/add-pr-comment@v2.8.2
         with:
           message: "This is a test comment to check workflow for changes to Markdown files."
