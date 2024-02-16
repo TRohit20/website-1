@@ -10,10 +10,13 @@ jobs:
   Notify-triagers:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
       - name: Check PR Changes
         id: pr-changes
         run: |
-          md_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '\.md$' || true)
+          md_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- '*.md' || true)
           echo "::set-output name=md_changes::${md_files}"
 
       - name: Create Comment
