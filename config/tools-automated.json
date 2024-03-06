@@ -635,17 +635,15 @@
     "description": "The following is a list of templates compatible with AsyncAPI Generator. You can use them to generate apps, clients or documentation from your AsyncAPI documents.",
     "toolsList": [
       {
-        "title": "Java Template",
-        "description": "Java template for the AsyncAPI Generator",
+        "title": "Node.js Multiprotocol Template",
+        "description": "This template generates a server using your AsyncAPI document. It supports multiple different protocols, like Kafka or MQTT.  It is designed in the way that generated code is a library and with it's API you can start the server, send messages or register a middleware for listening incoming messages. Runtime message validation included.",
         "links": {
-          "repoUrl": "https://github.com/asyncapi/java-template"
+          "repoUrl": "https://github.com/asyncapi/nodejs-template"
         },
         "filters": {
-          "language": [
-            "javascript"
-          ],
+          "language": "javascript",
           "technology": [
-            "Java"
+            "Node.js"
           ],
           "categories": [
             "generator-template"
@@ -713,15 +711,17 @@
         }
       },
       {
-        "title": "Node.js Multiprotocol Template",
-        "description": "This template generates a server using your AsyncAPI document. It supports multiple different protocols, like Kafka or MQTT.  It is designed in the way that generated code is a library and with it's API you can start the server, send messages or register a middleware for listening incoming messages. Runtime message validation included.",
+        "title": "Java Template",
+        "description": "Java template for the AsyncAPI Generator",
         "links": {
-          "repoUrl": "https://github.com/asyncapi/nodejs-template"
+          "repoUrl": "https://github.com/asyncapi/java-template"
         },
         "filters": {
-          "language": "javascript",
+          "language": [
+            "javascript"
+          ],
           "technology": [
-            "Node.js"
+            "Java"
           ],
           "categories": [
             "generator-template"
